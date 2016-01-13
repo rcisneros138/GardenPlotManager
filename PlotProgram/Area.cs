@@ -9,13 +9,15 @@ namespace PlotProgram
 {
     class Area
     {
+        
         public List<Plot> plots = new List<Plot>();
         public List<string> Overlaps = new List<string>();
-        //public Area()
-        //{
-        //    plots = new List<Plot>();
+        public Area()
+        {
             
-        //}
+            plots = new List<Plot>();
+            
+        }
 
         public void readInput(string FileName)
         {
@@ -23,7 +25,9 @@ namespace PlotProgram
             {
                 string[] coords = plot.Split(',');
                 CreatePlot(coords);
+
             }
+           
         }
 
         public void CreatePlot(string[] ArrayOfPlotPoints)
@@ -39,63 +43,37 @@ namespace PlotProgram
             
             plots.Add(plot);
         }
-        public IEnumerator<Plot> GetEnumerator()
+        
+        public List<string> GetOverlappedPlots()
         {
-            
             for (int i = 0; i < plots.Count; i++)
             {
                 for (int j = 0; j < plots.Count; j++)
                 {
-                    if (plots[i].Y1 > plots[j].Y || plots[i].Y < plots[j].Y1 || plots[i].X1 > plots[j].X || plots[i].X < plots[j].X1)
+                    if (i == j)
                     {
-                        yield return plots[i];
-                    }
-                }
 
-            }
-            
-        }
-        public void removeNonOverlappedValues()
-        {
-            for (int i = 0; i < plots.Count; i++)
-            {
-                for (int j = 0; j < plots.Count; j++)
-                {
-                    if (i==j)
-                    {
-                       
                     }
                     else
                     {
-                        if (plots[i].X >= plots[j].X1 || plots[i].X1 <= plots[j].X || plots[i].Y >= plots[j].Y1 || plots[i].Y1 <= plots[j].Y)
+                        if (plots[i].X > plots[j].X1 || plots[i].X1 < plots[j].X || plots[i].Y > plots[j].Y1 || plots[i].Y1 < plots[j].Y)
                         {
-
                             // you have no overlapps 
-                          
-
                         }
                         else
                         {
                             string OverlappedPlotCoordinate = string.Format("{0},{1},{2},{3}", plots[i].X, plots[i].Y, plots[i].H, plots[i].W);
-                            if (Overlaps.Contains(OverlappedPlotCoordinate))
-                            {
-                                
-                            }
-                            else
+                            if (!Overlaps.Contains(OverlappedPlotCoordinate))
                             {
                                 Overlaps.Add(OverlappedPlotCoordinate);
                             }
-
-                            //Console.WriteLine(OverlappedPlotCoordinate);
-                           
-
+                            
                         }
                     }
-                   
-           
                 }
 
             }
+            return Overlaps;
         }
     }
 }

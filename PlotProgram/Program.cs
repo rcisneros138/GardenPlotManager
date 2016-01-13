@@ -12,44 +12,36 @@ namespace PlotProgram
         static void Main(string[] args)
         {
             Area area = new Area();
-            string allPlots = "Plots.txt";//args[1];
-
-            area.readInput(allPlots);
-            area.removeNonOverlappedValues();
-
-            foreach (string item in area.Overlaps)
+            Fencing fencing = new Fencing();
+            string x = "3";
+            switch (x)
             {
-                Console.WriteLine(item);
+                case "1":
+                    
+                    string allPlots = "Plots.txt";  //args[1];
+                    area.readInput(allPlots);
+                    //area.GetOverlappedPlots();
+                    string overlappinngFile = "OverlappingPlots.txt"; //args[2];
+                    FileManager.WriteToFile(overlappinngFile, area.GetOverlappedPlots());
+                    break;
+                case "2":
+                    allPlots = "Plots.txt";  //args[1];
+                    //string fencingFile = args[2];
+                    area.readInput(allPlots);
+                    fencing.getFencingNeededSingplePlot(area.plots);
+                    FileManager.WriteToFile("Fencing.txt", fencing.FencingRequired);
+                    break;
+                case "3":
+                    allPlots = "Plots.txt";  //args[1];
+                    //string fencingFile = args[2];
+                    area.readInput(allPlots);
+                    FileManager.WriteToFile("TotalFencing.txt",fencing.GetTotalFencing(area.plots));
+
+                    break; 
             }
 
-            //foreach (Plot plot in area.Overlaps)
-            //{
-            //    string OverlappedPlotCoordinate = string.Format("{0},{1},{2},{3}", plot.X, plot.Y, plot.H, plot.W);
-            //    Console.WriteLine(OverlappedPlotCoordinate);
-            //}
-            //switch (args[0])
-            //{
-            //    case "1":
-            //        string allPlots = "Plots.txt";//args[1];
 
-            //        area.readInput(allPlots);
-            //        //create and add to plot list
-            //        //figured overlaps
-            //        //write overlapps to file
-            //        string overlappinngFile = args[2];
-
-            //        break;
-
-            //}
-
-
-
-
-
-            Console.ReadLine();
-            
-
-
+           // Console.ReadLine();
 
         }
     }
