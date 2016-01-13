@@ -13,31 +13,38 @@ namespace PlotProgram
         {
             Area area = new Area();
             Fencing fencing = new Fencing();
-            string x = "3";
-            switch (x)
+            Rotate rotate = new Rotate();
+            Fertilize fertilizer = new Fertilize();
+
+            string Choice = args[0];
+            string allPlotsFile = args[1];
+            string DestinationFile = args[2];
+            
+            int rotationAmount = Convert.ToInt32(args[3]);
+            area.readInput(allPlotsFile);
+
+            switch (Choice)
             {
                 case "1":
-                    
-                    string allPlots = "Plots.txt";  //args[1];
-                    area.readInput(allPlots);
-                    //area.GetOverlappedPlots();
-                    string overlappinngFile = "OverlappingPlots.txt"; //args[2];
-                    FileManager.WriteToFile(overlappinngFile, area.GetOverlappedPlots());
+                   
+                    FileManager.WriteToFile(DestinationFile, area.GetOverlappedPlots());
                     break;
                 case "2":
-                    allPlots = "Plots.txt";  //args[1];
-                    //string fencingFile = args[2];
-                    area.readInput(allPlots);
                     fencing.getFencingNeededSingplePlot(area.plots);
-                    FileManager.WriteToFile("Fencing.txt", fencing.FencingRequired);
+                    FileManager.WriteToFile(DestinationFile, fencing.FencingRequired);
                     break;
                 case "3":
-                    allPlots = "Plots.txt";  //args[1];
-                    //string fencingFile = args[2];
-                    area.readInput(allPlots);
-                    FileManager.WriteToFile("TotalFencing.txt",fencing.GetTotalFencing(area.plots));
-
-                    break; 
+                    FileManager.WriteToFile(DestinationFile,fencing.GetTotalFencing(area.plots));
+                    break;
+                case "4":
+                    float AmountRequired = fertilizer.getFertilizerNeeded( fertilizer.getTotalArea(area.plots));
+                    FileManager.WriteToFile(DestinationFile, AmountRequired);
+                    break;
+                case"5":
+                    area.readInput(allPlotsFile);
+                    rotate.ItemToRotate(area.plots, rotationAmount);
+                    FileManager.WriteFormattedString(DestinationFile, rotate.RotatedPlots);
+                    break;
             }
 
 

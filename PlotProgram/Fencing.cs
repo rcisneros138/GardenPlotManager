@@ -31,10 +31,13 @@ namespace PlotProgram
             {
                 Xcoords.Add(allPlots[i].X);
                 Ycoords.Add(allPlots[i].Y);
+                X1coords.Add(allPlots[i].X);
                 Y1coords.Add(allPlots[i].Y1);
+
             }
-            int height = Ycoords.Max() - Y1coords.Min();
-            int width = Xcoords.Max() - Xcoords.Min();
+            
+            int height = Y1coords.Max() - Ycoords.Min();
+            int width = X1coords.Max() - Xcoords.Min();
             int perimeter = 2 * (height + width);
             return perimeter;
 

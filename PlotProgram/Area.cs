@@ -25,7 +25,6 @@ namespace PlotProgram
             {
                 string[] coords = plot.Split(',');
                 CreatePlot(coords);
-
             }
            
         }

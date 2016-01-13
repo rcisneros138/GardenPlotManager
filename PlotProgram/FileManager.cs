@@ -29,14 +29,30 @@ namespace PlotProgram
                 writer.WriteLine(Item);
             }
 
-            //foreach (string plot in plotCoordinates)
-            //{
-            //    using (StreamWriter writer = new StreamWriter(fileName, true))
-            //    {
-            //        writer.WriteLine(plot);
-            //    }
+        
+        }
+        public static void WriteToFile(string fileName, float Item)
+        {
+            using (StreamWriter writer = new StreamWriter(fileName, true))
+            {
+                writer.WriteLine(Item);
+            }
 
-            //}
+
+        }
+
+        public static void WriteFormattedString(string fileName,List<Plot> plots)
+        {
+            for (int i = 0; i < plots.Count; i++)
+            {
+                string formattedCoords = string.Format("{0},{1},{2},{3}", plots[i].X, plots[i].Y, plots[i].H, plots[i].W);
+
+                using (StreamWriter writer = new StreamWriter(fileName, true))
+                {
+                    writer.WriteLine(formattedCoords);
+                }
+
+            }
         }
         //public static string[] readInput(string FileName)
         //{
