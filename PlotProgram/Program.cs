@@ -20,7 +20,7 @@ namespace PlotProgram
             string allPlotsFile = args[1];
             string DestinationFile = args[2];
             
-            int rotationAmount = Convert.ToInt32(args[3]);
+            int rotationAmount = 1;
             area.readInput(allPlotsFile);
 
             switch (Choice)

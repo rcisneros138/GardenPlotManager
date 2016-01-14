@@ -26,12 +26,12 @@ namespace PlotProgram
             List<int> Xcoords = new List<int>();
             List<int> Ycoords = new List<int>();
             List<int> Y1coords = new List<int>();
-            List<int> X1coords = new List<int>();// DO THIS
+            List<int> X1coords = new List<int>();
             for (int i = 0; i < allPlots.Count; i++)
             {
                 Xcoords.Add(allPlots[i].X);
                 Ycoords.Add(allPlots[i].Y);
-                X1coords.Add(allPlots[i].X);
+                X1coords.Add(allPlots[i].X1);
                 Y1coords.Add(allPlots[i].Y1);
 
             }
